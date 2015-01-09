@@ -26,3 +26,9 @@
 *.exe
 *.out
 *.app
+
+# Visual Studio
+vs
+
+# 3rd Party Libs
+third-party
