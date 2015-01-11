@@ -8,13 +8,13 @@ using namespace YAML_NSP;
 using namespace DETAIL_NSP;
 
 TEST(initial_state, create) {
-  expect_std_is_same<list<ph<0>>, initial_placeholders<std::plus>::type>();
-  expect_std_is_same<list<ph<0>, ph<1>>,
+  expect_std_is_same<ls<ph<0>>, initial_placeholders<std::plus>::type>();
+  expect_std_is_same<ls<ph<0>, ph<1>>,
     initial_placeholders<std::is_same>::type>();
-  expect_std_is_same<list<ph<0>, ph<1>, ph<2>, ph<3>, ph<4>>,
+  expect_std_is_same<ls<ph<0>, ph<1>, ph<2>, ph<3>, ph<4>>,
     initial_placeholders<five_argument_template>::type>();
   expect_std_is_same<
-    list<ph<0>, ph<1>, ph<2>, ph<3>, ph<4>, ph<5>, ph<6>, ph<7>, ph<8>, ph<9>>,
+    ls<ph<0>, ph<1>, ph<2>, ph<3>, ph<4>, ph<5>, ph<6>, ph<7>, ph<8>, ph<9>>,
     initial_placeholders<ten_argument_template>::type>();
 }
 

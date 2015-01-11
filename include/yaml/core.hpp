@@ -16,7 +16,7 @@ BEGIN_YAML_NSP
 
 BEGIN_DETAIL_NSP
 
-template<typename...> struct list;
+template<typename...> struct ls;
 
 /// \brief Creates the initial placeholders of a given template. Is used to 
 ///        initialize curried functions.
@@ -26,7 +26,7 @@ template<template<class...> class T> class initial_placeholders {
 
     using type = typename cond<
       fitting_t<T, As...>,
-      list<As...>,
+      ls<As...>,
       impl<(S + 1), As..., ph<S + 1>>>::type;
   };
 
@@ -57,7 +57,7 @@ template<template<class...> class T> class create_curried_func {
 
   template<typename> struct helper;
 
-  template<typename... As> struct helper<list<As...>> {
+  template<typename... As> struct helper<ls<As...>> {
     const static std::size_t size = sizeof...(As);
     using state_t = curried_func_state<size, size, As...>;
     using type = curried_func<T, state_t>;
@@ -110,24 +110,24 @@ class next_state<curried_func_state<N, M, Ss...>, form_args<M, K, As...>> {
   template<typename Ss, typename As, typename Rs> struct impl;
 
   template<typename... As, typename... Rs>
-  struct impl<list<>, list<As...>, list<Rs...>> {
+  struct impl<ls<>, ls<As...>, ls<Rs...>> {
     using type = curried_func_state<N, K, Rs...>;
   };
 
   template<typename S, typename... Ss, typename... As, typename... Rs>
-  struct impl<list<S, Ss...>, list<As...>, list<Rs...>> {
-    using type = typename impl<list<Ss...>, list<As...>, list<Rs..., S>>::type;
+  struct impl<ls<S, Ss...>, ls<As...>, ls<Rs...>> {
+    using type = typename impl<ls<Ss...>, ls<As...>, ls<Rs..., S>>::type;
   };
 
   template<std::size_t P, typename... Ss, typename... As, typename... Rs>
-  struct impl<list<ph<P>, Ss...>, list<As...>, list<Rs...>> {
+  struct impl<ls<ph<P>, Ss...>, ls<As...>, ls<Rs...>> {
     using it = typename take_from_variadic<P, As...>::type;
-    using type = typename impl<list<Ss...>, list<As...>, list<Rs..., it>>::type;
+    using type = typename impl<ls<Ss...>, ls<As...>, ls<Rs..., it>>::type;
   };
 
 public:
 
-  using type = typename impl<list<Ss...>, list<As...>, list<>>::type;
+  using type = typename impl<ls<Ss...>, ls<As...>, ls<>>::type;
 
 };
 
