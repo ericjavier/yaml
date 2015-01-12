@@ -16,16 +16,12 @@ template<typename SL, typename SR> class is_same_seq_tmpl {
   template<> struct impl<empty_seq, empty_seq> : public std::true_type { };
 
   template<typename HL, typename RL, typename HR, typename RR>
-  struct impl<seq<HL, RL>, seq<HR, RR>>
-    : public std::integral_constant<bool, is_same<HL, HR>::value &&
-      impl<typename force<RL>::type, typename force<RR>::type>::value> { };
-
-  using left = typename force<SL>::type;
-  using right = typename force<SR>::type;
+  struct impl<seq<HL, RL>, seq<HR, RR>> : public std::integral_constant<bool,
+    is_same<HL, HR>::value && impl<force_t<RL>, force_t<RR>>::value> { };
 
 public:
 
-  using type = typename impl<left, right>::type;
+  using type = typename impl<force_t<SL>, force_t<SR>>::type;
 
 };
 

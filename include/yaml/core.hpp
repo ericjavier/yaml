@@ -176,7 +176,7 @@ END_DETAIL_NSP
 
 using DETAIL_NSP_REF curried_func_t;
 using DETAIL_NSP_REF apply;
-using DETAIL_NSP_REF force;
+using DETAIL_NSP_REF force_t;
 using DETAIL_NSP_REF is_same;
 
 END_YAML_NSP

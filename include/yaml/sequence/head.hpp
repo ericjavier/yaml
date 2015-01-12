@@ -3,7 +3,6 @@
 
 #include <yaml\config.hpp>
 #include <yaml\core.hpp>
-#include <yaml\detail\force.hpp>
 #include <yaml\sequence\sequence_def.hpp>
 
 BEGIN_YAML_NSP
@@ -20,7 +19,7 @@ template<typename S> class head_tmpl {
 
 public:
 
-  using type = typename impl<typename force<S>::type>::type;
+  using type = typename impl<force_t<S>>::type;
 };
 
 END_DETAIL_NSP

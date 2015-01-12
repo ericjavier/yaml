@@ -30,10 +30,11 @@ public:
   using type = typename helper<T, have_type>::type;
 };
 
+template<typename T> using force_t = typename force<T>::type;
+
 template<typename L, typename R> struct is_same
-  : std::integral_constant<bool, std::is_same<
-      typename force<L>::type,
-      typename force<R>::type>::value> { };
+  : std::integral_constant<bool, std::is_same<force_t<L>, force_t<R>>::value> {
+};
 
 END_DETAIL_NSP
 

@@ -19,7 +19,7 @@ template<typename S> class tail_tmpl {
 
 public:
 
-  using type = typename impl<typename force<S>::type>::type;
+  using type = typename impl<force_t<S>>::type;
 
 };
 
