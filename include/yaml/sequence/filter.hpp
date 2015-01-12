@@ -44,6 +44,8 @@ public:
 
 END_DETAIL_NSP
 
+/// \brief Applied to a predicate and a sequence, returns the sequence of
+///        those elements that satisfy the predicate.
 using filter = curried_func_t<DETAIL_NSP_REF filter_tmpl>;
 
 END_YAML_NSP
