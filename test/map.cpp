@@ -1,8 +1,9 @@
-#include <gtest\gtest.h>
-#include <yaml\config.hpp>
-#include <yaml\core.hpp>
-#include <yaml\arithmetic.hpp>
-#include <yaml\sequence\map.hpp>
+#include <gtest/gtest.h>
+#include <yaml/config.hpp>
+#include <yaml/core.hpp>
+#include <yaml/arithmetic.hpp>
+#include <yaml/sequence/map.hpp>
+
 #include "test_utils.hpp"
 
 using namespace YAML_NSP;

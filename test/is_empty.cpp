@@ -1,10 +1,9 @@
-#include <gtest\gtest.h>
-#include <yaml\config.hpp>
-#include <yaml\detail\cond.hpp>
-#include <yaml\sequence\is_empty.hpp>
+#include <gtest/gtest.h>
+#include <yaml/config.hpp>
+#include <yaml/sequence/is_empty.hpp>
+
 #include "test_utils.hpp"
 
-using namespace std;
 using namespace YAML_NSP;
 using namespace DETAIL_NSP;
 

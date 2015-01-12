@@ -1,7 +1,7 @@
 #ifndef DETAIL_HAVE_TYPE_HPP_INCLUDED
 #define DETAIL_HAVE_TYPE_HPP_INCLUDED
 
-#include <yaml\config.hpp>
+#include <yaml/config.hpp>
 
 BEGIN_YAML_NSP
 

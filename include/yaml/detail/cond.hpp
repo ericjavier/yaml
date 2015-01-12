@@ -1,8 +1,8 @@
 #ifndef DETAIL_COND_HPP
 #define DETAIL_COND_HPP
 
-#include <yaml\config.hpp>
-#include <yaml\detail\force.hpp>
+#include <yaml/config.hpp>
+#include <yaml/detail/force.hpp>
 
 #include <type_traits>
 

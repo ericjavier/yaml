@@ -1,7 +1,7 @@
-#include <gtest\gtest.h>
-#include <yaml\config.hpp>
-#include <yaml\detail\cond.hpp>
-#include <yaml\sequence\head.hpp>
+#include <gtest/gtest.h>
+#include <yaml/config.hpp>
+#include <yaml/sequence/head.hpp>
+
 #include "test_utils.hpp"
 
 using namespace YAML_NSP;

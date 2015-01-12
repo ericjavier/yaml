@@ -3,8 +3,8 @@
 
 #include <type_traits>
 
-#include <yaml\config.hpp>
-#include <yaml\detail\have_type.hpp>
+#include <yaml/config.hpp>
+#include <yaml/detail/have_type.hpp>
 
 BEGIN_YAML_NSP
 

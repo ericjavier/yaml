@@ -1,7 +1,7 @@
 #ifndef DETAIL_TEMPLATE_FITTING_HPP_INCLUDED
 #define DETAIL_TEMPLATE_FITTING_HPP_INCLUDED
 
-#include <yaml\config.hpp>
+#include <yaml/config.hpp>
 #include <type_traits>
 
 BEGIN_YAML_NSP

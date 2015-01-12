@@ -1,14 +1,11 @@
-#include <gtest\gtest.h>
-#include <yaml\config.hpp>
-#include <yaml\detail\cond.hpp>
-#include <yaml\sequence\append.hpp>
+#include <gtest/gtest.h>
+#include <yaml/config.hpp>
+#include <yaml/sequence/append.hpp>
+
 #include "test_utils.hpp"
 
-using namespace std;
 using namespace YAML_NSP;
 using namespace DETAIL_NSP;
-
-
 
 TEST(append, list_seq) {
   using exp = list<t<1>, t<2>, t<3>, t<4>, t<4>, t<3>, t<2>, t<1>>;

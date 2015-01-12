@@ -1,8 +1,8 @@
 #ifndef DETAIL_TAKE_FROM_VARIADIC_HPP_INCLUDED
 #define DETAIL_TAKE_FROM_VARIADIC_HPP_INCLUDED
 
-#include <yaml\config.hpp>
-#include <yaml\detail\cond.hpp>
+#include <yaml/config.hpp>
+#include <yaml/detail/cond.hpp>
 #include <cstddef>
 #include <type_traits>
 
@@ -18,7 +18,7 @@ struct take_from_variadic<P, F, R...> {
   using type = typename cond<
     std::integral_constant<bool, (P == 0)>,
     F,
-    take_from_variadic<(P - 1), R... >> ::type;
+    take_from_variadic<(P - 1), R...>>::type;
 };
 
 

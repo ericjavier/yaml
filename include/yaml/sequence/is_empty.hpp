@@ -1,9 +1,9 @@
 #ifndef IS_EMPTY_HPP_INLCUDED
 #define IS_EMPTY_HPP_INLCUDED
 
-#include <yaml\config.hpp>
-#include <yaml\core.hpp>
-#include <yaml\sequence\sequence_def.hpp>
+#include <yaml/config.hpp>
+#include <yaml/core.hpp>
+#include <yaml/sequence/sequence_def.hpp>
 
 #include <type_traits>
 

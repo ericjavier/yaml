@@ -1,16 +1,17 @@
 #ifndef CORE_HPP_INCLUDED
 #define CORE_HPP_INCLUDED
 
-#include <yaml\config.hpp>
+#include <yaml/config.hpp>
+#include <yaml/detail/have_type.hpp>
+#include <yaml/detail/cond.hpp>
+#include <yaml/detail/template_fitting.hpp>
+#include <yaml/detail/placeholders.hpp>
+#include <yaml/detail/force.hpp>
+#include <yaml/detail/take_from_variadic.hpp>
+
 #include <type_traits>
 #include <cstddef>
 
-#include <yaml\detail\have_type.hpp>
-#include <yaml\detail\cond.hpp>
-#include <yaml\detail\template_fitting.hpp>
-#include <yaml\detail\placeholders.hpp>
-#include <yaml\detail\force.hpp>
-#include <yaml\detail\take_from_variadic.hpp>
 
 BEGIN_YAML_NSP
 

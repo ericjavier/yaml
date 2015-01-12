@@ -1,9 +1,9 @@
 #ifndef FILTER_HPP_INCLUDED
 #define FILTER_HPP_INCLUDED
 
-#include <yaml\config.hpp>
-#include <yaml\core.hpp>
-#include <yaml\sequence\sequence_def.hpp>
+#include <yaml/config.hpp>
+#include <yaml/core.hpp>
+#include <yaml/sequence/sequence_def.hpp>
 
 #include <type_traits>
 

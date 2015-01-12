@@ -1,13 +1,13 @@
 #ifndef TEST_UTILS_HPP
 #define TEST_UTILS_HPP
 
-#include <gtest\gtest.h>
+#include <gtest/gtest.h>
 #include <type_traits>
 #include <string>
 
-#include <yaml\core.hpp>
-#include <yaml\list.hpp>
-#include <yaml\sequence.hpp>
+#include <yaml/core.hpp>
+#include <yaml/list.hpp>
+#include <yaml/sequence.hpp>
 
 using YAML_NSP_REF list;
 using YAML_NSP_REF seq;

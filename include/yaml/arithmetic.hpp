@@ -1,9 +1,8 @@
 #ifndef ARITHMETIC_HPP_INCLUDED
 #define ARITHMETIC_HPP_INCLUDED
 
-#include <yaml\config.hpp>
-#include <yaml\core.hpp>
-#include <yaml\detail\force.hpp>
+#include <yaml/config.hpp>
+#include <yaml/core.hpp>
 #include <type_traits>
 
 #define DEFINE_ARITHM_FUNC(N, O) \
@@ -14,9 +13,7 @@
   template<typename LT, LT LV, typename RT, RT RV> \
   struct impl<std::integral_constant<LT, LV>, std::integral_constant<RT, RV>> { \
   using type = std::integral_constant<decltype(LV O RV), (LV O RV)>; }; \
-  using left = typename force<L>::type; \
-  using right = typename force<R>::type; \
-  public: using type = typename impl<left, right>::type; }; \
+  public: using type = typename impl<force_t<L>, force_t<R>>::type; }; \
   END_DETAIL_NSP \
   using N = curried_func_t<DETAIL_NSP_REF N##_tmpl>; \
   END_YAML_NSP \

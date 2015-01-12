@@ -1,9 +1,9 @@
 #ifndef HEAD_HPP_INCLUDED
 #define HEAD_HPP_INCLUDED
 
-#include <yaml\config.hpp>
-#include <yaml\core.hpp>
-#include <yaml\sequence\sequence_def.hpp>
+#include <yaml/config.hpp>
+#include <yaml/core.hpp>
+#include <yaml/sequence/sequence_def.hpp>
 
 BEGIN_YAML_NSP
 

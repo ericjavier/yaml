@@ -1,10 +1,10 @@
 #ifndef INIT_HPP_INCLUDED
 #define INIT_HPP_INCLUDED
 
-#include <yaml\config.hpp>
-#include <yaml\core.hpp>
-#include <yaml\sequence\sequence_def.hpp>
-#include <yaml\sequence\is_empty.hpp>
+#include <yaml/config.hpp>
+#include <yaml/core.hpp>
+#include <yaml/sequence/sequence_def.hpp>
+#include <yaml/sequence/is_empty.hpp>
 
 #include <type_traits>
 

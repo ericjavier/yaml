@@ -1,8 +1,8 @@
 #ifndef DETAIL_PLACEHOLDERS_HPP_INCLUDED
 #define DETAIL_PLACEHOLDERS_HPP_INCLUDED
 
-#include <yaml\config.hpp>
-#include <yaml\detail\force.hpp>
+#include <yaml/config.hpp>
+#include <yaml/detail/force.hpp>
 
 #include <type_traits>
 

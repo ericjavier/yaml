@@ -1,7 +1,7 @@
 #ifndef SEQUENCE_FWD_HPP_INCLUDED
 #define SEQUENCE_FWD_HPP_INCLUDED
 
-#include <yaml\config.hpp>
+#include <yaml/config.hpp>
 
 BEGIN_YAML_NSP
 

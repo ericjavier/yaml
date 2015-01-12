@@ -1,9 +1,9 @@
-#include <gtest\gtest.h>
-#include <yaml\config.hpp>
-#include <yaml\detail\have_type.hpp>
+#include <gtest/gtest.h>
+#include <yaml/config.hpp>
+#include <yaml/detail/have_type.hpp>
+
 #include "test_utils.hpp"
 
-using namespace std;
 using namespace YAML_NSP;
 using namespace DETAIL_NSP;
 
