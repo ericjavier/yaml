@@ -68,6 +68,9 @@ public:
   using type = typename helper<typename initial_placeholders<T>::type>::type;
 };
 
+template<template<class...> class T>
+using curried_func_t = typename create_curried_func<T>::type;
+
 /// \brief Converts a list of arguments to a formalized list of N arguments.
 ///        For example it introduce missing placeholders.
 template<std::size_t N, typename... As> class formalize_args { 
@@ -171,7 +174,7 @@ public:
 
 END_DETAIL_NSP
 
-using DETAIL_NSP_REF create_curried_func;
+using DETAIL_NSP_REF curried_func_t;
 using DETAIL_NSP_REF apply;
 using DETAIL_NSP_REF force;
 using DETAIL_NSP_REF is_same;

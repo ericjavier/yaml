@@ -18,7 +18,7 @@
   using right = typename force<R>::type; \
   public: using type = typename impl<left, right>::type; }; \
   END_DETAIL_NSP \
-  using N = create_curried_func<DETAIL_NSP_REF N>::type; \
+  using N = curried_func_t<DETAIL_NSP_REF N>; \
   END_YAML_NSP \
 
 DEFINE_ARITHM_FUNC(plus, +)

@@ -1,32 +1,32 @@
-#ifndef HEAD_HPP_INCLUDED
-#define HEAD_HPP_INCLUDED
+#ifndef TAIL_HPP_INCLUDED
+#define TAIL_HPP_INCLUDED
 
 #include <yaml\config.hpp>
 #include <yaml\core.hpp>
-#include <yaml\detail\force.hpp>
 #include <yaml\sequence\sequence_def.hpp>
 
 BEGIN_YAML_NSP
 
 BEGIN_DETAIL_NSP
 
-template<typename S> class head_tmpl {
+template<typename S> class tail_tmpl {
 
   template<typename> struct impl;
 
   template<typename H, typename R> struct impl<seq<H, R>> {
-    using type = H;
+    using type = R;
   };
 
 public:
 
   using type = typename impl<typename force<S>::type>::type;
+
 };
 
 END_DETAIL_NSP
 
-using head = curried_func_t<DETAIL_NSP_REF head_tmpl>;
+using tail = curried_func_t<DETAIL_NSP_REF tail_tmpl>;
 
 END_YAML_NSP
 
-#endif HEAD_HPP_INCLUDED
+#endif TAIL_HPP_INCLUDED

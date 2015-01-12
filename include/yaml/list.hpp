@@ -3,13 +3,14 @@
 
 #include <yaml\config.hpp>
 #include <yaml\core.hpp>
-#include <yaml\sequence\sequence_fwd.hpp>
+#include <yaml\sequence\sequence_def.hpp>
 
 BEGIN_YAML_NSP
 
 template<typename...> struct list;
 
-template<typename H, typename... R> struct list<H, R...> {
+template<typename H, typename... R>
+struct list<H, R...> {
   using type = seq<H, list<R...>>;
 };
 

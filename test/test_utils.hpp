@@ -29,6 +29,11 @@ template<typename Exp, typename Act> inline std::string log() {
   return os.str();
 }
 
+template<typename Exp, typename Act> inline void expect_same_seq() {
+  EXPECT_TRUE((typename YAML_NSP_REF DETAIL_NSP_REF
+    is_same_seq_tmpl<Exp, Act>::type::value)) << log<Exp, Act>();
+}
+
 template<typename Exp, typename Act> inline void expect_yaml_is_same() {
   EXPECT_TRUE((YAML_NSP_REF is_same<Exp, Act>::value)) << log<Exp, Act>();
 }
