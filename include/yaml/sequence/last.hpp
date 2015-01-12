@@ -42,8 +42,8 @@ public:
 
 END_DETAIL_NSP
 
-///\brief Extract the last element of a sequence, which must be finite
-///       and non-empty. 
+/// \brief Extract the last element of a sequence, which must be finite
+///        and non-empty. 
 using last = curried_func_t<DETAIL_NSP_REF last_tmpl>;
 
 END_YAML_NSP

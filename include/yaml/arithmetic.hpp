@@ -9,7 +9,7 @@
 #define DEFINE_ARITHM_FUNC(N, O) \
   BEGIN_YAML_NSP \
   BEGIN_DETAIL_NSP \
-  template<typename L, typename R> class N { \
+  template<typename L, typename R> class N##_tmpl { \
   template<typename L, typename R> struct impl; \
   template<typename LT, LT LV, typename RT, RT RV> \
   struct impl<std::integral_constant<LT, LV>, std::integral_constant<RT, RV>> { \
@@ -18,7 +18,7 @@
   using right = typename force<R>::type; \
   public: using type = typename impl<left, right>::type; }; \
   END_DETAIL_NSP \
-  using N = curried_func_t<DETAIL_NSP_REF N>; \
+  using N = curried_func_t<DETAIL_NSP_REF N##_tmpl>; \
   END_YAML_NSP \
 
 DEFINE_ARITHM_FUNC(plus, +)

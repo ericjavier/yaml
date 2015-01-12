@@ -41,8 +41,8 @@ public:
 
 END_DETAIL_NSP
 
-///\brief Return all the elements of a sequence except the last one. 
-///       The sequence must be non-empty.
+/// \brief Return all the elements of a sequence except the last one. 
+///        The sequence must be non-empty.
 using init = curried_func_t<DETAIL_NSP_REF init_tmpl>;
 
 END_YAML_NSP

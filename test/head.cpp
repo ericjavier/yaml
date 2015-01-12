@@ -4,7 +4,6 @@
 #include <yaml\sequence\head.hpp>
 #include "test_utils.hpp"
 
-using namespace std;
 using namespace YAML_NSP;
 using namespace DETAIL_NSP;
 

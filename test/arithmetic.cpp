@@ -12,7 +12,7 @@ using namespace DETAIL_NSP;
   using larg = std::integral_constant<LT, LV>; \
   using rarg = std::integral_constant<RT, RV>; \
   using exp = std::integral_constant<T, V>; \
-  using act = DETAIL_NSP_REF N<larg, rarg>::type; \
+  using act = DETAIL_NSP_REF N##_tmpl<larg, rarg>::type; \
   expect_std_is_same<exp, act>(); } \
   
 TEST_ARITHM_FUNC(plus, plus, int, -2, int, 3, int, 1)

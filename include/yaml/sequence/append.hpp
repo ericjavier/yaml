@@ -26,6 +26,8 @@ public:
   using type = typename impl<force_t<SL>, force_t<SR>>::type;
 };
 
+/// \brief Append two sequences.
+///       If the first sequence is not finite, the result is the first sequence.
 using append = curried_func_t<DETAIL_NSP_REF append_tmpl>;
 
 END_DETAIL_NSP

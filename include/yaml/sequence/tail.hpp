@@ -25,8 +25,8 @@ public:
 
 END_DETAIL_NSP
 
-///\brief Extract the elements after the head of a sequence, which must
-///       be non-empty.
+/// \brief Extract the elements after the head of a sequence, which must
+///        be non-empty.
 using tail = curried_func_t<DETAIL_NSP_REF tail_tmpl>;
 
 END_YAML_NSP

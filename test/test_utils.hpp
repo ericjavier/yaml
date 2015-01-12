@@ -9,9 +9,9 @@
 #include <yaml\list.hpp>
 #include <yaml\sequence.hpp>
 
-using namespace std;
-using namespace YAML_NSP;
-using namespace DETAIL_NSP;
+using YAML_NSP_REF list;
+using YAML_NSP_REF seq;
+using YAML_NSP_REF empty_seq;
 
 template<typename Exp, typename Act> inline std::string log() {
 
@@ -83,8 +83,20 @@ template<int> struct t;
 // test data
 using seq1 = seq<t<1>, seq<t<2>, seq<t<3>, seq<t<4>, empty_seq>>>>;
 using seq2 = seq<t<4>, seq<t<3>, seq<t<2>, seq<t<1>, empty_seq>>>>;
+using seq3 = seq<std::integral_constant<int, 0>,
+  seq<std::integral_constant<int, 1>,
+    seq<std::integral_constant<int, 2>,
+      seq<std::integral_constant<int, 3>,
+        seq<std::integral_constant<int, 4>,
+          empty_seq>>>>>;
+
+
 using lst1 = list<t<1>, t<2>, t<3>, t<4>>;
 using lst2 = list<t<4>, t<3>, t<2>, t<1>>;
-
+using lst3 = list<std::integral_constant<int, 0>,
+  std::integral_constant<int, 1>,
+  std::integral_constant<int, 2>,
+  std::integral_constant<int, 3>,
+  std::integral_constant<int, 4>>;
 
 #endif TEST_UTILS_HPP
