@@ -19,3 +19,13 @@ TEST(map, seq) {
 
   expect_same_seq<exp, map_tmpl<func, seq3>::type>();
 }
+
+TEST(map, list) {
+  using exp = list<std::integral_constant<int, 1>,
+    std::integral_constant<int, 2>,
+    std::integral_constant<int, 3>,
+    std::integral_constant<int, 4>,
+    std::integral_constant<int, 5>>;
+
+  expect_same_seq<exp, map_tmpl<func, lst3>::type>();
+}
