@@ -29,6 +29,7 @@ public:
 
 END_DETAIL_NSP
 
+/// \brief Reduces the sequence using the binary function, from left to right.
 using fold_left = curried_func_t<DETAIL_NSP_REF fold_left_tmpl>;
 
 END_YAML_NSP
