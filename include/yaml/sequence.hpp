@@ -15,6 +15,12 @@
 #include <yaml/sequence/filter.hpp>
 #include <yaml/sequence/index.hpp>
 #include <yaml/sequence/is_empty.hpp>
+#include <yaml/sequence/fold_left.hpp>
+#include <yaml/sequence/fold_left_1.hpp>
+#include <yaml/sequence/fold_right.hpp>
+#include <yaml/sequence/fold_right_1.hpp>
+#include <yaml/sequence/scan_left.hpp>
+#include <yaml/sequence/scan_left_1.hpp>
 
 
 #endif SEQUENCE_HPP_INCLUDED
