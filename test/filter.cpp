@@ -13,19 +13,14 @@ using namespace YAML_NSP;
 using namespace DETAIL_NSP;
 
 using func = apply<less, _0, std::integral_constant<int, 3>>::type;
+using result = list<std::integral_constant<int, 0>,
+  std::integral_constant<int, 1>,
+  std::integral_constant<int, 2 >>;
 
 TEST(filter, seq) {
-  using exp = list<std::integral_constant<int, 0>,
-    std::integral_constant<int, 1>,
-    std::integral_constant<int, 2>>;
-
-  expect_same_seq<exp, filter_tmpl<func, seq3>::type>();
+  expect_same_seq<result, filter_tmpl<func, seq3>::type>();
 }
 
 TEST(filter, list) {
-  using exp = list<std::integral_constant<int, 0>,
-    std::integral_constant<int, 1>,
-    std::integral_constant<int, 2>>;
-
-  expect_same_seq<exp, filter_tmpl<func, lst3>::type>();
+  expect_same_seq<result, filter_tmpl<func, lst3>::type>();
 }
