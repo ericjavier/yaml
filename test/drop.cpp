@@ -10,7 +10,7 @@ using namespace DETAIL_NSP;
 using result = list<
   std::integral_constant<int, 2>,
   std::integral_constant<int, 3>,
-  std::integral_constant<int, 4>> ;
+  std::integral_constant<int, 4>>;
 
 TEST(drop, seq) {
   expect_same_seq<result,

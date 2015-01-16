@@ -173,6 +173,11 @@ public:
   using type = typename impl<F, As...>::type;
 };
 
+template<typename T1, typename T2> struct pair { 
+  using first_type = T1;
+  using second_type = T2;
+};
+
 END_DETAIL_NSP
 
 using DETAIL_NSP_REF curried_func_t;
