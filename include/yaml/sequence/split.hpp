@@ -18,7 +18,7 @@ template<typename N, typename S> class split_tmpl {
 
 public:
 
-  using type = pair<take_result, drop_result>;
+  using type = pair_t<take_result, drop_result>;
 };
 
 END_DETAIL_NSP
