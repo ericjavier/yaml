@@ -7,16 +7,16 @@
 using namespace YAML_NSP;
 using namespace DETAIL_NSP;
 
-using result = list<
+using expected = list<
   std::integral_constant<int, 0>,
   std::integral_constant<int, 1>>;
 
 TEST(take, seq) {
-  expect_same_seq<result,
+  expect_same_seq<expected,
     take_tmpl<std::integral_constant<std::size_t, 2>, seq3>::type>();
 }
 
 TEST(take, list) {
-  expect_same_seq<result,
+  expect_same_seq<expected,
     take_tmpl<std::integral_constant<std::size_t, 2>, lst3>::type>();
 }
