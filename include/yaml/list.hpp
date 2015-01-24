@@ -10,13 +10,9 @@ BEGIN_YAML_NSP
 template<typename...> struct list;
 
 template<typename H, typename... R>
-struct list<H, R...> {
-  using type = seq<H, list<R...>>;
-};
+struct list<H, R...> : public seq<H, list<R...>> { };
 
-template<> struct list<> {
-  using type = empty_seq;
-};
+template<> struct list<> : public empty_seq { };
 
 END_YAML_NSP
 

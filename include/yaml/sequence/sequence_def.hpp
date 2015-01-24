@@ -5,9 +5,13 @@
 
 BEGIN_YAML_NSP
 
-template<typename H, typename R> struct seq { };
+template<typename H, typename R> struct seq {
+  using type = seq<H, R>;
+};
 
-struct empty_seq { };
+struct empty_seq {
+  using type = empty_seq;
+};
 
 END_YAML_NSP
 
