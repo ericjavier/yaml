@@ -173,13 +173,13 @@ public:
   using type = typename impl<F, As...>::type;
 };
 
-template<typename T1, typename T2> struct pair_t { 
+template<typename T1, typename T2> struct pair { 
   using first_type = T1;
   using second_type = T2;
-  using type = pair_t<T1, T2>;
+  using type = pair<T1, T2>;
 };
 
-using pair = create_curried_func<pair_t>;
+using make_pair = create_curried_func<pair>;
 
 END_DETAIL_NSP
 
@@ -187,8 +187,8 @@ using DETAIL_NSP_REF curried_func_t;
 using DETAIL_NSP_REF apply;
 using DETAIL_NSP_REF force_t;
 using DETAIL_NSP_REF is_same;
-using DETAIL_NSP_REF pair_t;
 using DETAIL_NSP_REF pair;
+using DETAIL_NSP_REF make_pair;
 
 END_YAML_NSP
 

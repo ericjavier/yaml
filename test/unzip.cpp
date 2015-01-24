@@ -8,10 +8,10 @@ using namespace YAML_NSP;
 using namespace DETAIL_NSP;
 
 using arg = list<
-  pair_t<std::integral_constant<int, 0>, t<4>>,
-  pair_t<std::integral_constant<int, 1>, t<3>>,
-  pair_t<std::integral_constant<int, 2>, t<2>>, 
-  pair_t<std::integral_constant<int, 3>, t<1>>>;
+  pair<std::integral_constant<int, 0>, t<4>>,
+  pair<std::integral_constant<int, 1>, t<3>>,
+  pair<std::integral_constant<int, 2>, t<2>>, 
+  pair<std::integral_constant<int, 3>, t<1>>>;
 
 using expected1 = list<
   std::integral_constant<int, 0>,

@@ -17,8 +17,8 @@ template<typename S> class unzip_tmpl {
     template<typename, typename> struct impl;
   
     template<typename H1, typename H2, typename R1, typename R2>
-    struct impl<pair_t<H1, H2>, pair_t<R1, R2>> { 
-      using type = pair_t<seq<H1, R1>, seq<H2, R2>>;
+    struct impl<pair<H1, H2>, pair<R1, R2>> { 
+      using type = pair<seq<H1, R1>, seq<H2, R2>>;
     };
 
     using type = typename impl<force_t<P1>, force_t<P2>>::type;
@@ -30,7 +30,7 @@ template<typename S> class unzip_tmpl {
 public:
 
   using type = typename apply<fold_right, reductor,
-    pair_t<empty_seq, empty_seq>, force_t<S>>::type;
+    pair<empty_seq, empty_seq>, force_t<S>>::type;
 
 };
 

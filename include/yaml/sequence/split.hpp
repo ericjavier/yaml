@@ -12,7 +12,7 @@ BEGIN_YAML_NSP
 BEGIN_DETAIL_NSP
 
 template<typename N, typename S> struct split_tmpl { 
-  using type = pair_t<apply<take, N, S>, apply<drop, N, S>>;
+  using type = pair<apply<take, N, S>, apply<drop, N, S>>;
 };
 
 END_DETAIL_NSP
