@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 #include <yaml/config.hpp>
 #include <yaml/core.hpp>
+#include <yaml/arithmetic.hpp>
 
 #include "test_utils.hpp"
 
@@ -96,3 +97,10 @@ TEST(apply_currying, case_two) {
   expect_std_false_type<res2>();
 }
 
+TEST(flip, case_one) {
+  using f = apply<flip, minus>::type;
+  using expected = std::integral_constant<int, 3>;
+  using result = apply<f,
+    std::integral_constant<int, 4>, std::integral_constant<int, 7>>::type;
+  expect_std_is_same<expected, result>();
+}

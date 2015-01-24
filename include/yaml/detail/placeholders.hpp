@@ -16,6 +16,7 @@ template<std::size_t P> struct ph { };
 END_DETAIL_NSP
 
 using _0 = DETAIL_NSP_REF ph<0>;
+using _1 = DETAIL_NSP_REF ph<1>;
 
 END_YAML_NSP
 

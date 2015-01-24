@@ -178,8 +178,15 @@ template<typename T1, typename T2> struct pair {
   using second_type = T2;
   using type = pair<T1, T2>;
 };
-
+/// \brief Creates a pair from two types.
 using make_pair = create_curried_func<pair>;
+
+template<typename F> struct flip_tmpl { 
+  using type = typename apply<F, _1, _0>::type;
+};
+
+/// \brief flip F takes its (first) two arguments in the reverse order of F.
+using flip = curried_func_t<flip_tmpl>;
 
 END_DETAIL_NSP
 
@@ -189,6 +196,7 @@ using DETAIL_NSP_REF force_t;
 using DETAIL_NSP_REF is_same;
 using DETAIL_NSP_REF pair;
 using DETAIL_NSP_REF make_pair;
+using DETAIL_NSP_REF flip;
 
 END_YAML_NSP
 
