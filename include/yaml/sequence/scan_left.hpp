@@ -18,7 +18,7 @@ template<typename F, typename I, typename S> class scan_left_tmpl {
   };
     
   template<typename I, typename H, typename R> struct impl<I, seq<H, R>> {
-    using type = seq<I, impl<typename apply<F, I, H>::type, force_t<R>>>;
+    using type = seq<I, impl<apply<F, I, H>, force_t<R>>>;
   };
 
 public:

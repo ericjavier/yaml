@@ -21,7 +21,7 @@ template<typename F, typename I, typename S> class scan_right_tmpl {
 
   template<typename I, typename H, typename R> struct impl<I, seq<H, R>> {
     using temp = impl<I, force_t<R>>;
-    using head = typename apply<F, H, typename temp::head>::type;
+    using head = apply<F, H, typename temp::head>;
     using type = seq<head, temp>;
   };
 

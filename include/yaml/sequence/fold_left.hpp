@@ -18,7 +18,7 @@ template<typename F, typename I, typename S> class fold_left_tmpl {
   };
 
   template<typename I, typename H, typename R> struct impl<I, seq<H, R>> {
-    using type = typename impl<typename apply<F, I, H>::type, force_t<R>>::type;
+    using type = typename impl<apply<F, I, H>, force_t<R>>::type;
   };
 
 public:

@@ -27,8 +27,7 @@ template<typename F, typename S0, typename S1> class zip_with_tmpl {
 
   template<typename H0, typename R0, typename H1, typename R1>
   struct impl<seq<H0, R0>, seq<H1, R1>> {
-    using type = seq<typename apply<F, H0, H1>::type,
-      impl<force_t<R0>, force_t<R1>>>;
+    using type = seq<apply<F, H0, H1>, impl<force_t<R0>, force_t<R1>>>;
   };
 
 public:

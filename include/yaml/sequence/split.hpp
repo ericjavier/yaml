@@ -11,14 +11,8 @@ BEGIN_YAML_NSP
 
 BEGIN_DETAIL_NSP
 
-template<typename N, typename S> class split_tmpl { 
-
-  using take_result = typename apply<take, N, S>::type;
-  using drop_result = typename apply<drop, N, S>::type;
-
-public:
-
-  using type = pair_t<take_result, drop_result>;
+template<typename N, typename S> struct split_tmpl { 
+  using type = pair_t<apply<take, N, S>, apply<drop, N, S>>;
 };
 
 END_DETAIL_NSP

@@ -18,7 +18,7 @@ template<typename F, typename S> class map_tmpl {
   };
 
   template<typename H, typename R> struct impl<seq<H, R>> {
-    using type = seq<typename apply<F, H>::type, impl<force_t<R>>>;
+    using type = seq<apply<F, H>, impl<force_t<R>>>;
   };
 
 public:

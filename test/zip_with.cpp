@@ -16,9 +16,11 @@ using expected = list<
   std::integral_constant<int, 8>>;
 
 TEST(zip_with, seq) {
-  expect_same_seq<expected, zip_with_tmpl<YAML_NSP_REF plus, seq3, seq3>::type>();
+  expect_same_seq<expected,
+    zip_with_tmpl<YAML_NSP_REF plus, seq3, seq3>::type>();
 }
 
 TEST(zip_with, list) {
-  expect_same_seq<expected, zip_with_tmpl<YAML_NSP_REF plus, lst3, lst3>::type>();
+  expect_same_seq<expected,
+    zip_with_tmpl<YAML_NSP_REF plus, lst3, lst3>::type>();
 }
