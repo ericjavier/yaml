@@ -192,6 +192,8 @@ template<typename F> struct flip_tmpl {
 /// \brief flip F takes its (first) two arguments in the reverse order of F.
 using flip = curried_func_t<flip_tmpl>;
 
+struct nothing { };
+
 END_DETAIL_NSP
 
 using DETAIL_NSP_REF curried_func_t;
@@ -202,6 +204,7 @@ using DETAIL_NSP_REF is_same;
 using DETAIL_NSP_REF pair;
 using DETAIL_NSP_REF make_pair;
 using DETAIL_NSP_REF flip;
+using DETAIL_NSP_REF nothing;
 
 END_YAML_NSP
 
