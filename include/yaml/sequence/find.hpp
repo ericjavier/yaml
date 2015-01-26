@@ -9,7 +9,7 @@ BEGIN_YAML_NSP
 
 BEGIN_DETAIL_NSP
 
-template<typename F, typename S> class find_if_tmpl {
+template<typename F, typename S> class find_tmpl {
 
   template<typename> struct impl;
 
@@ -41,7 +41,7 @@ public:
 
 END_DETAIL_NSP
 
-using find_if = curried_func_t<DETAIL_NSP_REF find_if_tmpl>;
+using find_if = curried_func_t<DETAIL_NSP_REF find_tmpl>;
 
 END_YAML_NSP
 
