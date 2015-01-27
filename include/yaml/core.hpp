@@ -194,14 +194,21 @@ template<typename F> struct flip_tmpl {
 /// \brief flip F takes its (first) two arguments in the reverse order of F.
 using flip = curried_func_t<flip_tmpl>;
 
-struct nothing { };
-
 template<typename T> struct id_tmpl {
   using type = T;
 };
 
 /// \brief Identity function.
 using id = curried_func_t<DETAIL_NSP_REF id_tmpl>;
+
+template<typename A, typename B> struct constant_tmpl {
+  using type = A;
+};
+
+/// \brief Constant function.
+using constant = curried_func_t<DETAIL_NSP_REF constant_tmpl>;
+
+struct nothing { };
 
 END_DETAIL_NSP
 
@@ -214,6 +221,7 @@ using DETAIL_NSP_REF pair;
 using DETAIL_NSP_REF make_pair;
 using DETAIL_NSP_REF flip;
 using DETAIL_NSP_REF id;
+using DETAIL_NSP_REF constant;
 using DETAIL_NSP_REF nothing;
 
 END_YAML_NSP
