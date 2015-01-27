@@ -35,4 +35,38 @@ DEFINE_ARITHM_FUNC(greater_equals, >= )
 DEFINE_ARITHM_FUNC(equals_to, == )
 DEFINE_ARITHM_FUNC(not_equals_to, != )
 
+
+
+BEGIN_YAML_NSP
+
+BEGIN_DETAIL_NSP
+
+template<typename T> class not_tmpl {
+
+  template<typename> struct impl;
+
+  template<> struct impl<std::true_type> {
+    using type = std::false_type;
+  };
+
+  template<> struct impl<std::false_type> {
+    using type = std::true_type;
+  };
+
+public:
+
+  using type = typename impl<force_t<T>>::type;
+
+};
+
+END_DETAIL_NSP
+
+using not = curried_func_t<DETAIL_NSP_REF not_tmpl>;
+
+END_YAML_NSP
+
+
+
+
+
 #endif ARITHMETIC_HPP_INCLUDED

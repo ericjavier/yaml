@@ -45,3 +45,11 @@ TEST_ARITHM_FUNC(or, or_between_2_trues, bool, true, bool, true, bool, true)
 TEST_ARITHM_FUNC(or, or_between_false_and_true, bool, false, bool, true, bool, true)
 TEST_ARITHM_FUNC(or, or_between_true_and_false, bool, true, bool, false, bool, true)
 TEST_ARITHM_FUNC(or, or_between_2_falses, bool, false, bool, false, bool, false)
+
+TEST(not, with_true) {
+  expect_std_is_same<std::false_type, not_tmpl<std::true_type>::type>();
+}
+
+TEST(not, with_false) {
+  expect_std_is_same<std::true_type, not_tmpl<std::false_type>::type>();
+}
