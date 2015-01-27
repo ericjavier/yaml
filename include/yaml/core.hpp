@@ -176,6 +176,7 @@ public:
 template<typename F, typename... As>
 using apply_t = typename apply<F, As...>::type;
 
+/// \brief A pair of types.
 template<typename T1, typename T2> struct pair { 
   using first_type = T1;
   using second_type = T2;
@@ -185,6 +186,7 @@ template<typename T1, typename T2> struct pair {
 /// \brief Creates a pair from two types.
 using make_pair = create_curried_func<pair>;
 
+/// \brief flip F takes its (first) two arguments in the reverse order of F.
 template<typename F> struct flip_tmpl { 
   using type = typename apply<F, _1, _0>::type;
 };
@@ -193,6 +195,13 @@ template<typename F> struct flip_tmpl {
 using flip = curried_func_t<flip_tmpl>;
 
 struct nothing { };
+
+template<typename T> struct id_tmpl {
+  using type = T;
+};
+
+/// \brief Identity function.
+using id = curried_func_t<DETAIL_NSP_REF id_tmpl>;
 
 END_DETAIL_NSP
 
@@ -204,6 +213,7 @@ using DETAIL_NSP_REF is_same;
 using DETAIL_NSP_REF pair;
 using DETAIL_NSP_REF make_pair;
 using DETAIL_NSP_REF flip;
+using DETAIL_NSP_REF id;
 using DETAIL_NSP_REF nothing;
 
 END_YAML_NSP
