@@ -201,7 +201,7 @@ template<typename T> struct id_tmpl {
 /// \brief Identity function.
 using id = curried_func_t<DETAIL_NSP_REF id_tmpl>;
 
-template<typename A, typename B> struct constant_tmpl {
+template<typename A, typename...> struct constant_tmpl {
   using type = A;
 };
 
