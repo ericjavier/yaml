@@ -15,7 +15,7 @@
   using type = std::integral_constant<decltype(LV O RV), (LV O RV)>; }; \
   public: using type = typename impl<force_t<L>, force_t<R>>::type; }; \
   END_DETAIL_NSP \
-  using N = curried_func_t<DETAIL_NSP_REF N##_tmpl>; \
+  using N = make_curried_t<DETAIL_NSP_REF N##_tmpl>; \
   END_YAML_NSP \
 
 DEFINE_ARITHM_FUNC(plus, +)
@@ -61,7 +61,7 @@ public:
 
 END_DETAIL_NSP
 
-using not = curried_func_t<DETAIL_NSP_REF not_tmpl>;
+using not = make_curried_t<DETAIL_NSP_REF not_tmpl>;
 
 END_YAML_NSP
 

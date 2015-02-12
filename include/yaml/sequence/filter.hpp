@@ -31,7 +31,7 @@ template<typename F, typename S> class filter_tmpl {
       using type = seq<H, impl<force_t<R>>>;
     };
 
-    using pred_result = typename apply<F, H>::type;
+    using pred_result = typename F::template ret<H>;
     using type = typename helper<seq<H, R>, pred_result>::type;
     
   };
@@ -46,7 +46,7 @@ END_DETAIL_NSP
 
 /// \brief Applied to a predicate and a sequence, returns the sequence of
 ///        those elements that satisfy the predicate.
-using filter = curried_func_t<DETAIL_NSP_REF filter_tmpl>;
+using filter = make_curried_t<DETAIL_NSP_REF filter_tmpl>;
 
 END_YAML_NSP
 

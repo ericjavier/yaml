@@ -29,7 +29,7 @@ template<typename P, typename S> class drop_while_tmpl {
       using type = seq<H, R>;
     };
 
-    using pred_result = typename apply<P, H>::type;
+    using pred_result = typename P::template ret<H>;
     using type = typename helper<seq<H, R>, pred_result>::type;
 
   };
@@ -42,7 +42,7 @@ public:
 
 END_DETAIL_NSP
 
-using drop_while = curried_func_t<DETAIL_NSP_REF drop_while_tmpl>;
+using drop_while = make_curried_t<DETAIL_NSP_REF drop_while_tmpl>;
 
 END_YAML_NSP
 

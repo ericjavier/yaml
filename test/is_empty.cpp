@@ -5,14 +5,13 @@
 #include "test_utils.hpp"
 
 using namespace YAML_NSP;
-using namespace DETAIL_NSP;
 
 TEST(is_empty, empty) {
-  expect_yaml_is_same<std::true_type, is_empty_tmpl<list<>>::type>();
-  expect_yaml_is_same<std::true_type, is_empty_tmpl<empty_seq>::type>();
+  expect_yaml_is_same<std::true_type, is_empty::ret<list<>>>();
+  expect_yaml_is_same<std::true_type, is_empty::ret<empty_seq>>();
 }
 
 TEST(is_empty, not_empty) {
-  expect_yaml_is_same<std::false_type, is_empty_tmpl<lst1>::type>();
-  expect_yaml_is_same<std::false_type, is_empty_tmpl<seq2>::type>();
+  expect_yaml_is_same<std::false_type, is_empty::ret<lst1>>();
+  expect_yaml_is_same<std::false_type, is_empty::ret<seq2>>();
 }

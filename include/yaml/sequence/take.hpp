@@ -44,7 +44,7 @@ public:
 
 END_DETAIL_NSP
 
-using take = curried_func_t<DETAIL_NSP_REF take_tmpl>;
+using take = make_curried_t<DETAIL_NSP_REF take_tmpl>;
 
 END_YAML_NSP
 

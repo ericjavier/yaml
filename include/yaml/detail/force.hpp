@@ -1,10 +1,10 @@
 #ifndef DETAIL_FORCE_HPP_INCLUDED
 #define DETAIL_FORCE_HPP_INCLUDED
 
-#include <type_traits>
-
 #include <yaml/config.hpp>
 #include <yaml/detail/have_type.hpp>
+
+#include <type_traits>
 
 BEGIN_YAML_NSP
 
@@ -31,10 +31,6 @@ public:
 };
 
 template<typename T> using force_t = typename force<T>::type;
-
-template<typename L, typename R> struct is_same
-  : std::integral_constant<bool, std::is_same<force_t<L>, force_t<R>>::value> {
-};
 
 END_DETAIL_NSP
 

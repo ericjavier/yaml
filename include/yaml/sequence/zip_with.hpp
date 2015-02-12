@@ -27,7 +27,8 @@ template<typename F, typename S0, typename S1> class zip_with_tmpl {
 
   template<typename H0, typename R0, typename H1, typename R1>
   struct impl<seq<H0, R0>, seq<H1, R1>> {
-    using type = seq<apply<F, H0, H1>, impl<force_t<R0>, force_t<R1>>>;
+    using zipped = typename F::template ret<H0, H1>;
+    using type = seq<zipped, impl<force_t<R0>, force_t<R1>>>;
   };
 
 public:
@@ -38,7 +39,7 @@ public:
 
 END_DETAIL_NSP
 
-using zip_with = curried_func_t<DETAIL_NSP_REF zip_with_tmpl>;
+using zip_with = make_curried_t<DETAIL_NSP_REF zip_with_tmpl>;
 
 END_YAML_NSP
 

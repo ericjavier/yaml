@@ -24,13 +24,15 @@ template<typename SL, typename SR> class append_tmpl {
 public:
 
   using type = typename impl<force_t<SL>, force_t<SR>>::type;
+
 };
 
-/// \brief Append two sequences.
-///       If the first sequence is not finite, the result is the first sequence.
-using append = curried_func_t<DETAIL_NSP_REF append_tmpl>;
-
 END_DETAIL_NSP
+
+/// \brief Append two sequences.
+///        If the first sequence is not finite, the result is that sequence.
+using append = make_curried_t<DETAIL_NSP_REF append_tmpl>;
+
 
 END_YAML_NSP
 

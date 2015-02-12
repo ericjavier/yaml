@@ -15,12 +15,9 @@ template<std::size_t, typename...> struct take_from_variadic;
 
 template<std::size_t P, typename F, typename... R>
 struct take_from_variadic<P, F, R...> {
-  using type = typename cond<
-    std::integral_constant<bool, (P == 0)>,
-    F,
-    take_from_variadic<(P - 1), R...>>::type;
+  using type = typename cond<std::integral_constant<bool, (P == 0)>,
+    F, take_from_variadic<(P - 1), R...>>::type;
 };
-
 
 END_DETAIL_NSP
 

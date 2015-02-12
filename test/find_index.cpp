@@ -7,15 +7,14 @@
 #include "test_utils.hpp"
 
 using namespace YAML_NSP;
-using namespace DETAIL_NSP;
 
-using func = apply<less, std::integral_constant<int, 3>>::type;
+using func = less::ret<std::integral_constant<int, 3>>;
 using expected = std::integral_constant<std::size_t, 4>;
 
 TEST(find_index, seq) {
-  expect_yaml_is_same<expected, find_index_tmpl<func, seq3>::type>();
+  expect_yaml_is_same<expected, find_index::ret<func, seq3>>();
 }
 
 TEST(find_index, list) {
-  expect_yaml_is_same<expected, find_index_tmpl<func, lst3>::type>();
+  expect_yaml_is_same<expected, find_index::ret<func, lst3>>();
 }

@@ -18,7 +18,7 @@ template<typename F, typename I, typename S> class scan_left_tmpl {
   };
     
   template<typename I, typename H, typename R> struct impl<I, seq<H, R>> {
-    using type = seq<I, impl<apply<F, I, H>, force_t<R>>>;
+    using type = seq<I, impl<typename F::template ret<I, H>, force_t<R>>>;
   };
 
 public:
@@ -31,7 +31,7 @@ END_DETAIL_NSP
 
 /// \brief Similar to 'fold_left', but returns a sequence of successive reduced
 ///        values from the left.
-using scan_left = curried_func_t<DETAIL_NSP_REF scan_left_tmpl>;
+using scan_left = make_curried_t<DETAIL_NSP_REF scan_left_tmpl>;
 
 END_YAML_NSP
 

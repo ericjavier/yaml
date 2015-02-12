@@ -11,7 +11,7 @@ BEGIN_YAML_NSP
 BEGIN_DETAIL_NSP
 
 /// \brief A simple placeholder templated on position.
-template<std::size_t P> struct ph { };
+template<std::size_t P> struct ph;
 
 END_DETAIL_NSP
 

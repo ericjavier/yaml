@@ -7,17 +7,16 @@
 #include "test_utils.hpp"
 
 using namespace YAML_NSP;
-using namespace DETAIL_NSP;
 
-using func = apply<less, _0, std::integral_constant<int, 3>>::type;
+using func = less::ret<_0, std::integral_constant<int, 3>>;
 using expected = list<std::integral_constant<int, 0>,
   std::integral_constant<int, 1>,
   std::integral_constant<int, 2 >>;
 
 TEST(filter, seq) {
-  expect_same_seq<expected, filter_tmpl<func, seq3>::type>();
+  expect_same_seq<expected, filter::ret<func, seq3>>();
 }
 
 TEST(filter, list) {
-  expect_same_seq<expected, filter_tmpl<func, lst3>::type>();
+  expect_same_seq<expected, filter::ret<func, lst3>>();
 }

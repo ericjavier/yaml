@@ -18,7 +18,7 @@ template<typename F, typename S> class map_tmpl {
   };
 
   template<typename H, typename R> struct impl<seq<H, R>> {
-    using type = seq<apply<F, H>, impl<force_t<R>>>;
+    using type = seq<typename F::template ret<H>, impl<force_t<R>>>;
   };
 
 public:
@@ -30,7 +30,7 @@ END_DETAIL_NSP
 
 /// \brief Gets the sequence obtained by applying a function to each
 ///        element of another.
-using map = curried_func_t<DETAIL_NSP_REF map_tmpl>;
+using map = make_curried_t<DETAIL_NSP_REF map_tmpl>;
 
 END_YAML_NSP
 

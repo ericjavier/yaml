@@ -30,7 +30,7 @@ public:
 
 END_DETAIL_NSP
 
-using length = curried_func_t<DETAIL_NSP_REF length_tmpl>;
+using length = make_curried_t<DETAIL_NSP_REF length_tmpl>;
 
 END_YAML_NSP
 

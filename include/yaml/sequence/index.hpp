@@ -33,7 +33,7 @@ public:
 END_DETAIL_NSP
 
 /// \brief Index a sequence, starting from 0.
-using index = curried_func_t<DETAIL_NSP_REF index_tmpl>;
+using index = make_curried_t<DETAIL_NSP_REF index_tmpl>;
 
 END_YAML_NSP
 

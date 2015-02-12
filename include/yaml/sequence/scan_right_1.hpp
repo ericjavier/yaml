@@ -25,11 +25,11 @@ template<typename F, typename S> class scan_right_1_tmpl {
 
     template<typename H, typename R> struct helper<seq<H, R>, std::false_type> {
       using temp = impl<force_t<R>>;
-      using head = apply<F, H, typename temp::head>;
+      using head = typename F::template ret<H, typename temp::head>;
       using type = seq<head, temp>;
     };
 
-    using is_last = typename apply<is_empty, R>::type;
+    using is_last = is_empty::ret<R>;
     using temp = helper<seq<H, R>, is_last>;
     using head = typename temp::head;
     using type = typename temp::type;
@@ -44,7 +44,7 @@ public:
 END_DETAIL_NSP
 
 /// \brief A variant of 'scan_right' that has no starting value argument.
-using scan_right_1 = curried_func_t<DETAIL_NSP_REF scan_right_1_tmpl>;
+using scan_right_1 = make_curried_t<DETAIL_NSP_REF scan_right_1_tmpl>;
 
 END_YAML_NSP
 

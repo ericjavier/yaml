@@ -19,7 +19,7 @@ template<typename F, typename I, typename S> class fold_right_tmpl {
 
   template<typename I, typename H, typename R> struct impl<I, seq<H, R>> {
     using temp = typename impl<I, force_t<R>>::type;
-    using type = typename apply<F, H, temp>::type;
+    using type = typename F::template ret<H, temp>;
   };
 
 public:
@@ -31,7 +31,7 @@ public:
 END_DETAIL_NSP
 
 /// \brief Reduces the sequence using the binary function, from right to left.
-using fold_right = curried_func_t<DETAIL_NSP_REF fold_right_tmpl>;
+using fold_right = make_curried_t<DETAIL_NSP_REF fold_right_tmpl>;
 
 END_YAML_NSP
 

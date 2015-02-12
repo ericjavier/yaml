@@ -5,7 +5,6 @@
 #include "test_utils.hpp"
 
 using namespace YAML_NSP;
-using namespace DETAIL_NSP;
 
 using expected = list<
   std::integral_constant<int, 2>,
@@ -14,10 +13,10 @@ using expected = list<
 
 TEST(drop, seq) {
   expect_same_seq<expected,
-    drop_tmpl<std::integral_constant<std::size_t, 2>, seq3>::type>();
+    drop::ret<std::integral_constant<std::size_t, 2>, seq3>>();
 }
 
 TEST(drop, list) {
   expect_same_seq<expected,
-    drop_tmpl<std::integral_constant<std::size_t, 2>, lst3>::type>();
+    drop::ret<std::integral_constant<std::size_t, 2>, lst3>>();
 }

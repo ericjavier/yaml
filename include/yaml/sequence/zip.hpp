@@ -8,7 +8,7 @@
 
 BEGIN_YAML_NSP
 
-using zip = apply<zip_with, make_pair>::type;
+using zip = zip_with::ret<make_pair>;
 
 END_YAML_NSP
 

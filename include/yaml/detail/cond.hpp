@@ -13,7 +13,7 @@ BEGIN_DETAIL_NSP
 /// \brief Provides if-then-else functionality.
 template<typename If, typename Then, typename Else> class cond {
 
-  template<typename If, typename Then, typename Else> struct impl;
+  template<typename, typename, typename> struct impl;
 
   template<typename Then, typename Else>
   struct impl<std::true_type, Then, Else> {

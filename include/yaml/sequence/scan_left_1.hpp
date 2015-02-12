@@ -26,7 +26,7 @@ public:
 END_DETAIL_NSP
 
 /// \brief A variant of 'scan_left' that has no starting value argument.
-using scan_left_1 = curried_func_t<DETAIL_NSP_REF scan_left_1_tmpl>;
+using scan_left_1 = make_curried_t<DETAIL_NSP_REF scan_left_1_tmpl>;
 
 END_YAML_NSP
 

@@ -43,7 +43,7 @@ public:
 
 END_DETAIL_NSP
 
-using drop = curried_func_t<DETAIL_NSP_REF drop_tmpl>;
+using drop = make_curried_t<DETAIL_NSP_REF drop_tmpl>;
 
 END_YAML_NSP
 

@@ -25,7 +25,7 @@ public:
 END_DETAIL_NSP
 
 ///\brief Extract the first element of a sequence, which must be non-empty. 
-using head = curried_func_t<DETAIL_NSP_REF head_tmpl>;
+using head = make_curried_t<DETAIL_NSP_REF head_tmpl>;
 
 END_YAML_NSP
 

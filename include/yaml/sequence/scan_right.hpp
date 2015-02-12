@@ -21,7 +21,7 @@ template<typename F, typename I, typename S> class scan_right_tmpl {
 
   template<typename I, typename H, typename R> struct impl<I, seq<H, R>> {
     using temp = impl<I, force_t<R>>;
-    using head = apply<F, H, typename temp::head>;
+    using head = typename F::template ret<H, typename temp::head>;
     using type = seq<head, temp>;
   };
 
@@ -35,7 +35,7 @@ END_DETAIL_NSP
 
 /// \brief Similar to 'fold_right', but returns a sequence of successive reduced
 ///        values from the right.
-using scan_right = curried_func_t<DETAIL_NSP_REF scan_right_tmpl>;
+using scan_right = make_curried_t<DETAIL_NSP_REF scan_right_tmpl>;
 
 END_YAML_NSP
 

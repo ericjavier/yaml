@@ -14,7 +14,7 @@ struct empty_seq {
   using type = empty_seq;
 };
 
-using cons = curried_func_t<seq>;
+using cons = make_curried_t<seq>;
 
 END_YAML_NSP
 

@@ -17,11 +17,12 @@ BEGIN_YAML_NSP
 
 BEGIN_DETAIL_NSP
 
+/// \brief Internal helper type used to pack a list of types.
 template<typename...> struct ls;
 
 /// \brief Creates the initial placeholders of a given template. Is used to 
 ///        initialize curried functions.
-template<template<class...> class T> class initial_placeholders { 
+template<template<class...> class T> class initial_phs { 
 
   template<std::size_t S, typename... As> struct impl {
 
@@ -41,7 +42,7 @@ public:
 ///        M:  is the number of placeholders
 ///        Ss: the arguments
 template<std::size_t N, std::size_t M, typename... Ss>
-struct curried_func_state;
+struct currying_state;
 
 /// \brief Used to represent the arguments passed to a curried function.
 ///        N:  is the number of arguments.
@@ -49,28 +50,6 @@ struct curried_func_state;
 ///        As: the arguments
 /// \NOTE  'form' stands for formalized
 template<std::size_t M, std::size_t K, typename... As> struct form_args;
-
-/// \brief To codify a curried function: T is the template, and S the state.
-template<template<class...> class T, typename S> struct curried_func;
-
-/// \brief Creates a curried function from a template.
-template<template<class...> class T> class create_curried_func {
-
-  template<typename> struct helper;
-
-  template<typename... As> struct helper<ls<As...>> {
-    const static std::size_t size = sizeof...(As);
-    using state_t = curried_func_state<size, size, As...>;
-    using type = curried_func<T, state_t>;
-  };
-
-public:
-
-  using type = typename helper<typename initial_placeholders<T>::type>::type;
-};
-
-template<template<class...> class T>
-using curried_func_t = typename create_curried_func<T>::type;
 
 /// \brief Converts a list of arguments to a formalized list of N arguments.
 ///        For example it introduce missing placeholders.
@@ -105,17 +84,17 @@ public:
 };
 
 /// \brief Transition function from a curried state to another.
-template<typename S, typename A> class next_state;
+template<typename S, typename A> class move_state;
 
 template<
   std::size_t N, std::size_t M, std::size_t K, typename... Ss, typename... As>
-class next_state<curried_func_state<N, M, Ss...>, form_args<M, K, As...>> {
+class move_state<currying_state<N, M, Ss...>, form_args<M, K, As...>> {
 
   template<typename Ss, typename As, typename Rs> struct impl;
 
   template<typename... As, typename... Rs>
   struct impl<ls<>, ls<As...>, ls<Rs...>> {
-    using type = curried_func_state<N, K, Rs...>;
+    using type = currying_state<N, K, Rs...>;
   };
 
   template<typename S, typename... Ss, typename... As, typename... Rs>
@@ -135,46 +114,81 @@ public:
 
 };
 
-/// \brief Apply a set of arguments to a curried function.
-template<typename F, typename... As> class apply { 
+/// \brief Creates the initial curried function state from a template.
+template<template<class...> class F> class make_state {
 
-  template<typename, typename...> struct impl;
+  template<typename> struct helper;
 
-  template<
-    template<class...> class T,
-    std::size_t N,
-    std::size_t M,
-    typename... Ss,
-    typename... Args>
-  struct impl<curried_func<T, curried_func_state<N, M, Ss...>>, Args...> {
-
-    using form_args = typename formalize_args<M, Args...>::type;
-    using current_state = curried_func_state<N, M, Ss...>;
-    using next_state = typename next_state<current_state, form_args>::type;
-
-    template<typename> struct helper;
-
-    template<std::size_t N, std::size_t K, typename... Rs>
-    struct helper<curried_func_state<N, K, Rs...>> {
-      using type = curried_func<T, curried_func_state<N, K, Rs...>>;
-    };
-
-    template<std::size_t N, typename... Rs>
-    struct helper<curried_func_state<N, 0, Rs...>> {
-      using type = typename T<Rs...>::type;
-    };
-
-    using type = typename helper<next_state>::type;
-
+  template<typename... As> struct helper<ls<As...>> {
+    const static std::size_t size = sizeof...(As);
+    using type = currying_state<size, size, As...>;
   };
 
 public:
 
-  using type = typename impl<F, As...>::type;
+  using type = typename helper<typename initial_phs<F>::type>::type;
 };
 
-template<typename F, typename... As>
-using apply_t = typename apply<F, As...>::type;
+/// \brief Type that encodes the currying.
+template<template <class...> class F, typename S> class curried_t {
+
+  template<typename> struct helper;
+
+  template<std::size_t N, std::size_t K, typename... Rs>
+  struct helper<currying_state<N, K, Rs...>> {
+    using type = curried_t<F, currying_state<N, K, Rs...>>;
+  };
+
+  template<std::size_t N, typename... Rs>
+  struct helper<currying_state<N, 0, Rs...>> {
+    using type = typename F<Rs...>::type;
+  };
+
+  template<typename> struct impl;
+
+  template<std::size_t N, std::size_t M, typename... Ss>
+  struct impl<currying_state<N, M, Ss...>> {
+
+    using current_state = currying_state<N, M, Ss...>;
+
+    template<typename... As> using ret = typename helper<
+      typename move_state<current_state, 
+      typename formalize_args<M, As...>::type>::type>::type;
+  };
+
+public:
+  
+  template<typename... As> using ret = typename impl<S>::template ret<As...>;
+
+};
+
+template<template <class...> class F>
+using make_curried_t = curried_t<F, typename make_state<F>::type>;
+
+/// \brief flip F takes its (first) two arguments in the reverse order of F.
+template<typename F> struct flip_tmpl { 
+  using type = typename F::template ret<_1, _0>;
+};
+
+template<typename T> struct id_tmpl {
+  using type = T;
+};
+
+template<typename A, typename...> struct constant_tmpl {
+  using type = A;
+};
+
+template<typename L, typename R> struct is_same_tmpl {
+  using type = std::integral_constant<bool, std::is_same<force_t<L>, force_t<R>>::value>;
+};
+
+END_DETAIL_NSP
+
+using DETAIL_NSP_REF make_curried_t;
+using DETAIL_NSP_REF force_t;
+
+/// \brief A function to test if two types represent the same.
+using is_same = make_curried_t<DETAIL_NSP_REF is_same_tmpl>;
 
 /// \brief A pair of types.
 template<typename T1, typename T2> struct pair { 
@@ -184,45 +198,19 @@ template<typename T1, typename T2> struct pair {
 };
 
 /// \brief Creates a pair from two types.
-using make_pair = create_curried_func<pair>;
+using make_pair = make_curried_t<pair>;
 
 /// \brief flip F takes its (first) two arguments in the reverse order of F.
-template<typename F> struct flip_tmpl { 
-  using type = typename apply<F, _1, _0>::type;
-};
-
-/// \brief flip F takes its (first) two arguments in the reverse order of F.
-using flip = curried_func_t<flip_tmpl>;
-
-template<typename T> struct id_tmpl {
-  using type = T;
-};
+using flip = make_curried_t<DETAIL_NSP_REF flip_tmpl>;
 
 /// \brief Identity function.
-using id = curried_func_t<DETAIL_NSP_REF id_tmpl>;
-
-template<typename A, typename...> struct constant_tmpl {
-  using type = A;
-};
+using id = make_curried_t<DETAIL_NSP_REF id_tmpl>;
 
 /// \brief Constant function.
-using constant = curried_func_t<DETAIL_NSP_REF constant_tmpl>;
+using constant = make_curried_t<DETAIL_NSP_REF constant_tmpl>;
 
+/// \brief Type used to codify the absent of a viable result.
 struct nothing { };
-
-END_DETAIL_NSP
-
-using DETAIL_NSP_REF curried_func_t;
-using DETAIL_NSP_REF apply;
-using DETAIL_NSP_REF apply_t;
-using DETAIL_NSP_REF force_t;
-using DETAIL_NSP_REF is_same;
-using DETAIL_NSP_REF pair;
-using DETAIL_NSP_REF make_pair;
-using DETAIL_NSP_REF flip;
-using DETAIL_NSP_REF id;
-using DETAIL_NSP_REF constant;
-using DETAIL_NSP_REF nothing;
 
 END_YAML_NSP
 

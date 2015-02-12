@@ -25,18 +25,17 @@ template<typename S> class unzip_tmpl {
 
   };
 
-  using reductor = curried_func_t<red>;
+  using reductor = make_curried_t<red>;
 
 public:
 
-  using type = typename apply<fold_right, reductor,
-    pair<empty_seq, empty_seq>, force_t<S>>::type;
+  using type = fold_right::ret<reductor, pair<empty_seq, empty_seq>, S>;
 
 };
 
 END_DETAIL_NSP
 
-using unzip = curried_func_t<DETAIL_NSP_REF unzip_tmpl>;
+using unzip = make_curried_t<DETAIL_NSP_REF unzip_tmpl>;
 
 END_YAML_NSP
 

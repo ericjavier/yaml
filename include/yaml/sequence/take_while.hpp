@@ -29,7 +29,7 @@ template<typename P, typename S> class take_while_tmpl {
       using type = typename impl<force_t<R>>::type;
     };
 
-    using pred_result = typename apply<P, H>::type;
+    using pred_result = typename P::template ret<H>;
     using type = typename helper<seq<H, R>, pred_result>::type;
   };
 
@@ -41,7 +41,7 @@ public:
 
 END_DETAIL_NSP
 
-using take_while = curried_func_t<DETAIL_NSP_REF take_while_tmpl>;
+using take_while = make_curried_t<DETAIL_NSP_REF take_while_tmpl>;
 
 END_YAML_NSP
 

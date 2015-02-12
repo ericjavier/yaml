@@ -28,7 +28,7 @@ template<typename S> class init_tmpl {
       using type = empty_seq; // to forget current
     };
 
-    using is_last = typename apply<is_empty, R>::type;
+    using is_last = is_empty::ret<R>;
     using type = typename helper<seq<H, R>, is_last>::type;
 
   };
@@ -43,7 +43,7 @@ END_DETAIL_NSP
 
 /// \brief Return all the elements of a sequence except the last one. 
 ///        The sequence must be non-empty.
-using init = curried_func_t<DETAIL_NSP_REF init_tmpl>;
+using init = make_curried_t<DETAIL_NSP_REF init_tmpl>;
 
 END_YAML_NSP
 

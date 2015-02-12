@@ -10,7 +10,7 @@ BEGIN_YAML_NSP
 
 /// \brief Returns the elements of a sequence in reverse order.
 ///        The sequence must be finite.
-using reverse = apply<fold_left, apply_t<flip, cons>, empty_seq>::type;
+using reverse = fold_left::ret<flip::ret<cons>, empty_seq>;
 
 END_YAML_NSP
 

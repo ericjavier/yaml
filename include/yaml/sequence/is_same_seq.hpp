@@ -17,7 +17,7 @@ template<typename SL, typename SR> class is_same_seq_tmpl {
 
   template<typename HL, typename RL, typename HR, typename RR>
   struct impl<seq<HL, RL>, seq<HR, RR>> : public std::integral_constant<bool,
-    is_same<HL, HR>::value && impl<force_t<RL>, force_t<RR>>::value> { };
+    is_same::template ret<HL, HR>::value && impl<force_t<RL>, force_t<RR>>::value> { };
 
 public:
 
@@ -27,7 +27,7 @@ public:
 
 END_DETAIL_NSP
 
-using is_same_seq = curried_func_t<DETAIL_NSP_REF is_same_seq_tmpl>;
+using is_same_seq = make_curried_t<DETAIL_NSP_REF is_same_seq_tmpl>;
 
 END_YAML_NSP
 

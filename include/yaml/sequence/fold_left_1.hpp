@@ -10,7 +10,6 @@ BEGIN_YAML_NSP
 
 BEGIN_DETAIL_NSP
 
-
 template<typename F, typename S> class fold_left_1_tmpl {
 
   template<typename> struct impl;
@@ -28,7 +27,7 @@ END_DETAIL_NSP
 
 /// \brief Variant of 'fold_left' that has no starting value argument, and thus 
 ///        must be applied to non-empty lists. 
-using fold_left_1 = curried_func_t<DETAIL_NSP_REF fold_left_1_tmpl>;
+using fold_left_1 = make_curried_t<DETAIL_NSP_REF fold_left_1_tmpl>;
 
 END_YAML_NSP
 

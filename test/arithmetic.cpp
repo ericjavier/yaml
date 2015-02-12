@@ -5,14 +5,13 @@
 #include "test_utils.hpp"
 
 using namespace YAML_NSP;
-using namespace DETAIL_NSP;
 
 #define TEST_ARITHM_FUNC(N, C, LT, LV, RT, RV, T, V) \
   TEST(N, C) { \
   using larg = std::integral_constant<LT, LV>; \
   using rarg = std::integral_constant<RT, RV>; \
   using exp = std::integral_constant<T, V>; \
-  using act = DETAIL_NSP_REF N##_tmpl<larg, rarg>::type; \
+  using act = N::ret<larg, rarg>; \
   expect_std_is_same<exp, act>(); } \
   
 TEST_ARITHM_FUNC(plus, plus, int, -2, int, 3, int, 1)
@@ -47,9 +46,9 @@ TEST_ARITHM_FUNC(or, or_between_true_and_false, bool, true, bool, false, bool, t
 TEST_ARITHM_FUNC(or, or_between_2_falses, bool, false, bool, false, bool, false)
 
 TEST(not, with_true) {
-  expect_std_is_same<std::false_type, not_tmpl<std::true_type>::type>();
+  expect_std_is_same<std::false_type, not::ret<std::true_type>>();
 }
 
 TEST(not, with_false) {
-  expect_std_is_same<std::true_type, not_tmpl<std::false_type>::type>();
+  expect_std_is_same<std::true_type, not::ret<std::false_type>>();
 }

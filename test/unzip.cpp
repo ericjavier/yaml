@@ -5,7 +5,6 @@
 #include "test_utils.hpp"
 
 using namespace YAML_NSP;
-using namespace DETAIL_NSP;
 
 using arg = list<
   pair<std::integral_constant<int, 0>, t<4>>,
@@ -23,7 +22,7 @@ using expected2 = list<t<4>, t<3>, t<2>, t<1>>;
 
 
 TEST(unzip, case_one) {
-  using result = apply<unzip, arg>::type;
+  using result = unzip::ret<arg>;
   expect_same_seq<expected1, result::first_type>();
   expect_same_seq<expected2, result::second_type>();
 }

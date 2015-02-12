@@ -9,7 +9,7 @@
 using namespace YAML_NSP;
 using namespace DETAIL_NSP;
 
-using func = apply<plus, std::integral_constant<int, 1>>::type;
+using func = plus::ret<std::integral_constant<int, 1>>;
 using expected = list<std::integral_constant<int, 1>,
   std::integral_constant<int, 2>,
   std::integral_constant<int, 3>,
@@ -17,9 +17,9 @@ using expected = list<std::integral_constant<int, 1>,
   std::integral_constant<int, 5>>;
 
 TEST(map, seq) {
-  expect_same_seq<expected, map_tmpl<func, seq3>::type>();
+  expect_same_seq<expected, map::ret<func, seq3>>();
 }
 
 TEST(map, list) {
-  expect_same_seq<expected, map_tmpl<func, lst3>::type>();
+  expect_same_seq<expected, map::ret<func, lst3>>();
 }

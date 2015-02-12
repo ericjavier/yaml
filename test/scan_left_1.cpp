@@ -6,7 +6,6 @@
 #include "test_utils.hpp"
 
 using namespace YAML_NSP;
-using namespace DETAIL_NSP;
 
 using expected = list<
   std::integral_constant<int, 0>,
@@ -16,9 +15,9 @@ using expected = list<
   std::integral_constant<int, 10>>;
 
 TEST(scan_left_1, seq) {
-  expect_same_seq<expected, scan_left_1_tmpl<plus, seq3>::type>();
+  expect_same_seq<expected, scan_left_1::ret<plus, seq3>>();
 }
 
 TEST(scan_left_1, list) {
-  expect_same_seq<expected, scan_left_1_tmpl<plus, lst3>::type>();
+  expect_same_seq<expected, scan_left_1::ret<plus, lst3>>();
 }

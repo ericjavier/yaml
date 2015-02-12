@@ -9,14 +9,14 @@ using namespace DETAIL_NSP;
 
 TEST(length, seq) {
   expect_yaml_is_same<std::integral_constant<std::size_t, 4>, 
-    length_tmpl<seq1>::type>();
+    length::ret<seq1>>();
   expect_yaml_is_same<std::integral_constant<std::size_t, 5>,
-    length_tmpl<seq3>::type>();
+    length::ret<seq3>>();
 }
 
 TEST(length, list) {
   expect_yaml_is_same<std::integral_constant<std::size_t, 4>,
-    length_tmpl<lst1>::type>();
+    length::ret<lst1>>();
   expect_yaml_is_same<std::integral_constant<std::size_t, 5>,
-    length_tmpl<lst3>::type>();
+    length::ret<lst3>>();
 }

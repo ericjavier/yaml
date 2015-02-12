@@ -29,7 +29,7 @@ template<typename S> class last_tmpl {
       using type = H;
     };
 
-    using is_last = typename apply<is_empty, R>::type;
+    using is_last = is_empty::ret<R>;
     using type = typename helper<seq<H, R>, is_last>::type;
 
   };
@@ -44,7 +44,7 @@ END_DETAIL_NSP
 
 /// \brief Extract the last element of a sequence, which must be finite
 ///        and non-empty. 
-using last = curried_func_t<DETAIL_NSP_REF last_tmpl>;
+using last = make_curried_t<DETAIL_NSP_REF last_tmpl>;
 
 END_YAML_NSP
 

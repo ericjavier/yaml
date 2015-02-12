@@ -29,7 +29,7 @@ public:
 END_DETAIL_NSP
 
 /// \brief Test whether a sequence is empty.
-using is_empty = curried_func_t<DETAIL_NSP_REF is_empty_tmpl>;
+using is_empty = make_curried_t<DETAIL_NSP_REF is_empty_tmpl>;
 
 END_YAML_NSP
 

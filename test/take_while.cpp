@@ -13,12 +13,12 @@ using expected = list<
   std::integral_constant<int, 0>,
   std::integral_constant<int, 1>>;
 
-using pred = apply<less, _0, std::integral_constant<int, 2>>::type;
+using pred = less::ret<_0, std::integral_constant<int, 2>>;
 
 TEST(take_while, seq) {
-  expect_same_seq<expected, take_while_tmpl<pred, seq3>::type>();
+  expect_same_seq<expected, take_while::ret<pred, seq3>>();
 }
 
 TEST(take_while, list) {
-  expect_same_seq<expected, take_while_tmpl<pred, lst3>::type>();
+  expect_same_seq<expected, take_while::ret<pred, lst3>>();
 }

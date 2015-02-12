@@ -15,7 +15,7 @@ template<typename T> struct repeat_tmpl {
 
 END_DETAIL_NSP
 
-using repeat = curried_func_t<DETAIL_NSP_REF repeat_tmpl>;
+using repeat = make_curried_t<DETAIL_NSP_REF repeat_tmpl>;
 
 END_YAML_NSP
 

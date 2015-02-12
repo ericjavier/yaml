@@ -5,14 +5,13 @@
 #include "test_utils.hpp"
 
 using namespace YAML_NSP;
-using namespace DETAIL_NSP;
 
 TEST(last, seq) {
-  expect_yaml_is_same<t<4>, last_tmpl<seq1>::type>();
-  expect_yaml_is_same<t<1>, last_tmpl<seq2>::type>();
+  expect_yaml_is_same<t<4>, last::ret<seq1>>();
+  expect_yaml_is_same<t<1>, last::ret<seq2>>();
 }
 
 TEST(last, list) {
-  expect_yaml_is_same<t<4>, last_tmpl<lst1>::type>();
-  expect_yaml_is_same<t<1>, last_tmpl<lst2>::type>();
+  expect_yaml_is_same<t<4>, last::ret<lst1>>();
+  expect_yaml_is_same<t<1>, last::ret<lst2>>();
 }

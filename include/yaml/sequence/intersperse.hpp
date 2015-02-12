@@ -41,7 +41,7 @@ END_DETAIL_NSP
 
 /// \brief Takes an element and a list and `intersperses' that element 
 ///        between the elements of the list.
-using intersperse = curried_func_t<DETAIL_NSP_REF intersperse_tmpl>;
+using intersperse = make_curried_t<DETAIL_NSP_REF intersperse_tmpl>;
 
 END_YAML_NSP
 

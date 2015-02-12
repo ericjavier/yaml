@@ -5,7 +5,6 @@
 #include "test_utils.hpp"
 
 using namespace YAML_NSP;
-using namespace DETAIL_NSP;
 
 using expected = list<
   std::integral_constant<int, 4>,
@@ -15,11 +14,11 @@ using expected = list<
   std::integral_constant<int, 0>>;
 
 TEST(reverse, seq) {
-  using result = apply<reverse, seq3>::type;
+  using result = reverse::ret<seq3>;
   expect_same_seq<expected, result>();
 }
 
 TEST(reverse, list) {
-  using result = apply<reverse, lst3>::type;
+  using result = reverse::ret<lst3>;
   expect_same_seq<expected, result>();
 }

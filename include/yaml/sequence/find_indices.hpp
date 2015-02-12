@@ -32,7 +32,8 @@ template<typename F, typename S> struct find_indices_tmpl {
       using type = typename impl<(I + 1), force_t<R>>::type;
     };
 
-    using type = typename helper<I, seq<H, R>, apply_t<F, H>>::type;
+    using type = typename helper<I, seq<H, R>,
+      typename F::template ret<H>>::type;
 
   };
 
@@ -44,7 +45,7 @@ public:
 
 END_DETAIL_NSP
 
-using find_indices = curried_func_t<DETAIL_NSP_REF find_indices_tmpl>;
+using find_indices = make_curried_t<DETAIL_NSP_REF find_indices_tmpl>;
 
 END_YAML_NSP
 
