@@ -24,8 +24,19 @@ template<typename SL, typename SR> class is_same_seq_tmpl {
 
   template<typename HL, typename RL, typename HR, typename RR>
   struct impl<seq<HL, RL>, seq<HR, RR>> {
+
+    // taking into account if the head is a sequence too
+    template<typename HL, typename HR> struct helper {
+      using type = std::is_same<force_t<HL>, force_t<HR>>;
+    };
+
+    template<typename HL, typename RL, typename HR, typename RR>
+    struct helper<seq<HL, RL>, seq<HR, RR>> {
+      using type = typename impl<seq<HL, RL>, seq<HR, RR>>::type;
+    };
+
     using type = and::ret<
-      std::is_same<force_t<HL>, force_t<HR>>, 
+      typename helper<force_t<HL>, force_t<HR>>::type, 
       typename impl<force_t<RL>, force_t<RR>>::type>;
   };
 
