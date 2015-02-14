@@ -24,8 +24,8 @@ template<typename S> class transpose_tmpl {
     
     template<typename H, typename R> struct helper {
       using seq_type = seq<H, R>;
-      using heads = map::ret<head, seq_type>; //seq<H, map::ret<head, R>>; 
-      using tails = map::ret<tail, seq_type>; //seq<R, map::ret<tail, R>>; 
+      using heads = map::ret<head, seq_type>; 
+      using tails = map::ret<tail, seq_type>; 
       using type = seq<heads, impl<tails>>;
     };
 
@@ -45,6 +45,7 @@ public:
 
 END_DETAIL_NSP
 
+/// brief Transposes the rows and columns of its argument.
 using transpose = make_curried_t<DETAIL_NSP_REF transpose_tmpl>;
 
 END_YAML_NSP
