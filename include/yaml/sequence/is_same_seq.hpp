@@ -3,7 +3,10 @@
 
 #include <yaml/config.hpp>
 #include <yaml/core.hpp>
+#include <yaml/arithmetic.hpp>
 #include <yaml/sequence/sequence_def.hpp>
+
+#include <type_traits>
 
 BEGIN_YAML_NSP
 
@@ -11,13 +14,20 @@ BEGIN_DETAIL_NSP
 
 template<typename SL, typename SR> class is_same_seq_tmpl {
 
-  template<typename, typename> struct impl : public std::false_type { };
-
-  template<> struct impl<empty_seq, empty_seq> : public std::true_type { };
+  template<typename, typename> struct impl {
+    using type = std::false_type;
+  };
+  
+  template<> struct impl<empty_seq, empty_seq> {
+    using type = std::true_type;
+  };
 
   template<typename HL, typename RL, typename HR, typename RR>
-  struct impl<seq<HL, RL>, seq<HR, RR>> : public std::integral_constant<bool,
-    is_same::template ret<HL, HR>::value && impl<force_t<RL>, force_t<RR>>::value> { };
+  struct impl<seq<HL, RL>, seq<HR, RR>> {
+    using type = and::ret<
+      std::is_same<force_t<HL>, force_t<HR>>, 
+      typename impl<force_t<RL>, force_t<RR>>::type>;
+  };
 
 public:
 
