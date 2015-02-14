@@ -39,7 +39,8 @@ public:
 
 END_DETAIL_NSP
 
-/// brief Returns the list of all subsequences of the argument.
+/// brief Returns the list of all subsequences of the argument,
+///       except for the empty list.
 using non_empty_seqs = make_curried_t<DETAIL_NSP_REF non_empty_seqs_tmpl>;
 
 END_YAML_NSP
