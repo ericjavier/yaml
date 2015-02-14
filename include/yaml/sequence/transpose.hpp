@@ -33,7 +33,7 @@ template<typename S> class transpose_tmpl {
       using type = typename impl<force_t<R>>::type;
     };
 
-    using type = typename helper<force_t<H>, force_t<R>>::type;
+    using type = typename helper<force_t<H>, R>::type;
 
   };
   
