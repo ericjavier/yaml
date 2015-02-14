@@ -2,6 +2,7 @@
 #define TEST_UTILS_HPP
 
 #include <gtest/gtest.h>
+#include <typeinfo>
 #include <type_traits>
 #include <string>
 
@@ -12,6 +13,9 @@
 using YAML_NSP_REF list;
 using YAML_NSP_REF seq;
 using YAML_NSP_REF empty_seq;
+using YAML_NSP_REF force_t;
+
+template<typename T> struct type_name;
 
 template<typename Exp, typename Act> inline std::string log() {
 
@@ -19,10 +23,10 @@ template<typename Exp, typename Act> inline std::string log() {
   os << "---------------------------------------------------------------------"
      << std::endl
      << "Exp: "
-     << typeid(Exp).name()
+     << type_name<force_t<Exp>>::get()
      << std::endl
      << "Act: "
-     << typeid(Act).name()
+     << type_name<force_t<Act>>::get()
      << std::endl
      << "---------------------------------------------------------------------";
 
@@ -30,8 +34,8 @@ template<typename Exp, typename Act> inline std::string log() {
 }
 
 template<typename Exp, typename Act> inline void expect_same_seq() {
-  EXPECT_TRUE((typename YAML_NSP_REF DETAIL_NSP_REF
-    is_same_seq_tmpl<Exp, Act>::type::value)) << log<Exp, Act>();
+  EXPECT_TRUE((typename YAML_NSP_REF
+    is_same_seq::ret<Exp, Act>::value)) << log<Exp, Act>();
 }
 
 template<typename Exp, typename Act> inline void expect_yaml_is_same() {
@@ -50,6 +54,32 @@ template<typename Act> inline void expect_std_true_type() {
 template<typename Act> inline void expect_std_false_type() {
   expect_std_is_same<std::false_type, Act>();
 }
+
+template<typename T> struct type_name {
+  static std::string get() {
+    return typeid(force_t<T>).name();
+  }
+};
+
+template<typename H, typename R> struct type_name<seq<H, R>> {
+  static std::string get() {
+
+    std::ostringstream os;
+    os << "seq<"
+       << type_name<force_t<H>>::get()
+       << ","
+       << type_name<force_t<R>>::get()
+       << ">";
+     
+    return os.str();
+  }
+};
+
+template<> struct type_name<empty_seq> {
+  static std::string get() {
+    return "NIL";
+  }
+};
 
 // other stuff
 
@@ -80,6 +110,17 @@ struct ten_argument_template;
 
 //! used for fast generation of types
 template<int> struct t;
+
+template<int V> struct type_name<t<V>> {
+  static std::string get() {
+    std::ostringstream os;
+    os << "t"
+       << V;
+     
+    return os.str();
+  }
+};
+
 
 // test data
 using seq1 = seq<t<1>, seq<t<2>, seq<t<3>, seq<t<4>, empty_seq>>>>;
