@@ -8,15 +8,7 @@
 
 BEGIN_YAML_NSP
 
-BEGIN_DETAIL_NSP
-
-//! Waiting for function composition
-template<typename S>
-using sub_seqs_tmpl = cons::ret<empty_seq, non_empty_seqs::ret<S>>;
-
-END_DETAIL_NSP
-
-using sub_seqs = make_curried_t<DETAIL_NSP_REF sub_seqs_tmpl>;
+using sub_seqs = compose::ret<cons::ret<empty_seq>, non_empty_seqs>;
 
 END_YAML_NSP
 

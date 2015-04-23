@@ -41,8 +41,7 @@ public:
 ///        N:  is the number of arguments.
 ///        M:  is the number of placeholders
 ///        Ss: the arguments
-template<std::size_t N, std::size_t M, typename... Ss>
-struct currying_state;
+template<std::size_t N, std::size_t M, typename... Ss> struct currying_state;
 
 /// \brief Used to represent the arguments passed to a curried function.
 ///        N:  is the number of arguments.
@@ -86,8 +85,11 @@ public:
 /// \brief Transition function from a curried state to another.
 template<typename S, typename A> class move_state;
 
-template<
-  std::size_t N, std::size_t M, std::size_t K, typename... Ss, typename... As>
+template<std::size_t N,
+  std::size_t M,
+  std::size_t K,
+  typename... Ss,
+  typename... As>
 class move_state<currying_state<N, M, Ss...>, form_args<M, K, As...>> {
 
   template<typename Ss, typename As, typename Rs> struct impl;
@@ -179,13 +181,28 @@ template<typename A, typename...> struct constant_tmpl {
 };
 
 template<typename L, typename R> struct is_same_tmpl {
-  using type = std::integral_constant<bool, std::is_same<force_t<L>, force_t<R>>::value>;
+  using type = std::integral_constant<bool,
+    std::is_same<force_t<L>, force_t<R>>::value>;
+};
+
+template<typename F, typename G> class compose_tmpl {
+
+  template<typename... As>
+  using impl_tmpl = typename F::template ret<typename G::template ret<As...>>;
+
+public:
+
+  using type = make_curried_t<impl_tmpl>;
+
 };
 
 END_DETAIL_NSP
 
 using DETAIL_NSP_REF make_curried_t;
 using DETAIL_NSP_REF force_t;
+
+/// \brief Function composition.
+using compose = make_curried_t<DETAIL_NSP_REF compose_tmpl>;
 
 /// \brief A function to test if two types represent the same.
 using is_same = make_curried_t<DETAIL_NSP_REF is_same_tmpl>;

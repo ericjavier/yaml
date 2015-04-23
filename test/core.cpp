@@ -8,6 +8,32 @@
 using namespace YAML_NSP;
 using namespace DETAIL_NSP;
 
+
+template<typename, typename, typename>
+struct curryable_function
+{
+  using type = void;
+};
+
+template<typename...>
+struct non_curryable_function
+{
+  using type = int;
+};
+
+TEST(fitting_for_manu, first) {
+  static_assert(!fitting_t<curryable_function, int>::value, "Instantiable?");
+  static_assert(!fitting_t<curryable_function, int, int>::value, "Instantiable?");
+  static_assert(fitting_t<curryable_function, int, int, int>::value, "Not instantiable?");
+
+  // static_assert(fitting_t<non_curryable_function>::value, "Not instantiable?"); this is other bug ...
+  static_assert(fitting_t<non_curryable_function, int>::value, "Not instantiable?");
+  static_assert(fitting_t<non_curryable_function, int, int>::value, "Not instantiable?");
+  static_assert(fitting_t<non_curryable_function, int, int, int>::value, "Not instantiable?");
+  static_assert(fitting_t<non_curryable_function, int, int, int, int>::value, "Not instantiable?");
+  static_assert(fitting_t<non_curryable_function, int, int, int, int, int>::value, "Not instantiable?");
+}
+
 TEST(initial_placeholders, create) {
   expect_std_is_same<ls<ph<0>>, initial_phs<std::plus>::type>();
   expect_std_is_same<ls<ph<0>, ph<1>>,
@@ -124,3 +150,14 @@ TEST(flip, case_one) {
     std::integral_constant<int, 7>>;
   expect_std_is_same<expected, result>();
 }
+
+//TEST(composition, case_one) {
+//  using f = compose::ret<plus, plus::ret<std::integral_constant<int, 5>>>;
+//  expect_yaml_is_same<std::integral_constant<int, 15>,
+//    f::ret<
+//      std::integral_constant<int, 5>
+//    >
+//    ::ret<
+//      std::integral_constant<int, 5>
+//    >>();
+//}
